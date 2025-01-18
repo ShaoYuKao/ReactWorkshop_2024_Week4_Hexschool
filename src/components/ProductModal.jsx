@@ -4,13 +4,7 @@ import './ProductModal.css';
 const ProductModal = ({
   tempProduct, // 暫存產品資料
   setTempProduct,  // 暫存產品資料設定函式
-  /**
-   * 處理產品資料變更事件
-   * @param {Object} e 事件對象
-   * @param {string} e.target.id - 觸發事件的元素的 ID
-   * @param {string} e.target.value - 觸發事件的元素的值
-   */
-  handletempProductChange,
+  handletempProductChange, // 處理產品資料變更事件
   handleImageChange, // 處理圖片變更事件
   handleAddImage, // 新增圖片欄位
   handleRemoveImage, // 刪除最後一個圖片欄位
