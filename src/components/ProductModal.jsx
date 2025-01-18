@@ -1,4 +1,5 @@
 import React from 'react';
+import './ProductModal.css';
 
 const ProductModal = ({
   tempProduct, // 暫存產品資料
