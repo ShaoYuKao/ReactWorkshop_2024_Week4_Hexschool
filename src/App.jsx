@@ -4,6 +4,7 @@ import axios from "axios";
 import Loading from "react-fullscreen-loading";
 import './App.css';
 import ProductModal from './components/ProductModal';
+import Pagination from './components/Pagination'; // 新增這行
 
 const API_BASE = "https://ec-course-api.hexschool.io/v2";
 const API_PATH = "202501-react-shaoyu";
@@ -538,40 +539,15 @@ function App() {
 
               </tbody>
             </table>
-            {/* 分頁 (Pagination) */}
-            {pagination.total_pages > 1 && (
-              <div className="d-flex justify-content-end">
-                <nav aria-label="Page navigation">
-                  <ul className="pagination">
-                    <li className={"page-item " + (pagination.has_pre ? "" : "disabled")}>
-                      <a className="page-link" href="#" aria-label="Previous" onClick={handlePrevious}>
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-
-                    {[...Array(pagesPerGroup)].map((_, index) => {
-                      const pageNumber = currentGroup * pagesPerGroup + index + 1;
-                      if (pageNumber > pagination.total_pages) return null;
-                      return (
-                        <li
-                          className={"page-item " + (currentPage === Number(pageNumber) ? "active" : "")}
-                          key={pageNumber}
-                          onClick={() => setCurrentPage(pageNumber)}
-                        >
-                          <a className="page-link" href="#">{pageNumber}</a>
-                        </li>
-                      );
-                    })}
-
-                    <li className={"page-item " + (pagination.has_next ? "" : "disabled")}>
-                      <a className="page-link" href="#" aria-label="Next" onClick={handleNext} >
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            )}
+            {/* 使用 Pagination 元件 */}
+            <Pagination
+              pagination={pagination}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              currentGroup={currentGroup}
+              setCurrentGroup={setCurrentGroup}
+              pagesPerGroup={pagesPerGroup}
+            />
           </div>
         </>
       ) : (
